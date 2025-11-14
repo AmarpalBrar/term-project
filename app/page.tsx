@@ -1,9 +1,19 @@
 import { prisma } from "@/database";
 import Link from "next/link";
+// import { setTimeout } from "node:timers/promises";
+import { Suspense } from "react";
 
-export default async function Home() {
+export default function Home() {
+  return (
+    <Suspense fallback={<SkeletonBlocks />}>
+      <BlocksList />
+    </Suspense>
+  );
+}
+
+async function BlocksList() {
   const blocks = await prisma.block.findMany();
-
+  // await setTimeout(5000);
   return (
     <main className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-2xl mx-auto">
@@ -28,11 +38,36 @@ export default async function Home() {
                 key={block.id}
                 className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition"
               >
-                <span className="text-gray-800 font-medium">{block.title}</span>
+                <span className="text-gray-800 font-medium">
+                  <Link href={`/blocks/${block.id}`}>{block.title}</Link>
+                </span>
               </li>
             ))}
           </ul>
         )}
+      </div>
+    </main>
+  );
+}
+
+function SkeletonBlocks() {
+  return (
+    <main className="min-h-screen bg-gray-50 p-8 animate-pulse">
+      <div className="max-w-2xl mx-auto">
+        {/* Header skeleton */}
+        <header className="flex items-center justify-between mb-8">
+          <div className="h-8 w-40 bg-gray-300 rounded"></div>
+          <div className="h-10 w-32 bg-gray-300 rounded-lg"></div>
+        </header>
+
+        {/* List skeleton */}
+        <ul className="space-y-3">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <li key={i} className="p-4 bg-white rounded-lg shadow-sm">
+              <div className="h-5 w-48 bg-gray-300 rounded"></div>
+            </li>
+          ))}
+        </ul>
       </div>
     </main>
   );
