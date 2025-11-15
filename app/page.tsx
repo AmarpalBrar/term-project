@@ -1,6 +1,6 @@
 import { prisma } from "@/database";
 import Link from "next/link";
-// import { setTimeout } from "node:timers/promises";
+//import { setTimeout } from "node:timers/promises";
 import { Suspense } from "react";
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
 
 async function BlocksList() {
   const blocks = await prisma.block.findMany();
-  // await setTimeout(5000);
+  //await setTimeout(5000);
   return (
     <main className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-2xl mx-auto">

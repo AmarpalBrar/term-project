@@ -1,5 +1,8 @@
+import { createBlock } from "@/app/api";
+import {deleteBlock} from"@/app/api"
 import { prisma } from "@/database";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 interface Props {
   params: { id: string };
@@ -25,11 +28,15 @@ export default async function BlockIDPage(props: Props) {
           <h1 className="text-3xl font-semibold text-gray-800">CodeBlocks</h1>
 
           <div className="flex gap-4"> 
-            <Link href="/">
-              <span className="inline-block px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition">
-                Delete
-              </span>
-            </Link>
+          <form action={deleteBlock}>
+            <input type="hidden" name="id" value={id} />
+            <button
+            type="submit"
+            className="mt-4 px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            >
+            Delete
+            </button>
+          </form>
             <Link href={`/blocks/${block.id}/edit`}>
               <span className="inline-block px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
                 Edit
@@ -38,12 +45,11 @@ export default async function BlockIDPage(props: Props) {
           </div>
         </header>
 
-
-
         <form className="space-y-4">
           <label className="block">
             <span className="text-gray-700">Title</span>
             <input
+              name="title"
               type="text"
               defaultValue={block.title}
               className="bg-white rounded-lg shadow-sm hover:shadow-md w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
@@ -54,6 +60,7 @@ export default async function BlockIDPage(props: Props) {
             <span className="text-gray-700">Code</span>
             <textarea
             rows={6} 
+            name="code"
             defaultValue={block.code}
             className="bg-white rounded-lg shadow-sm hover:shadow-md w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
             />
