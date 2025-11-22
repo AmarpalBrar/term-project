@@ -34,3 +34,18 @@ export async function deleteBlock(formData: FormData) {
 
   redirect("/");
 }
+
+
+export async function handleLogin(formData: FormData) {
+  const username = formData.get("username") as string;
+  const password = formData.get("password") as string;
+  const foundUser = await prisma.user.findUnique({
+    where: { username, password },
+  });
+  if (!foundUser) {
+    redirect("/login");
+  } else {
+    (await cookies()).set("user_id", String(foundUser.id));
+    redirect("/");
+  }
+}
