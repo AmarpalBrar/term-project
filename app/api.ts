@@ -74,7 +74,7 @@ export async function deleteBlock(formData: FormData) {
     where: { id }
   });
 
-  redirect("/");
+ redirect("/");
 }
 
 // Login page

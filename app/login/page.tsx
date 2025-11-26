@@ -17,7 +17,7 @@ export default async function LoginPage() {
               placeholder="Enter your username"
               name="username"
               required
-              className="bg-white rounded-lg shadow-sm hover:shadow-md w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              className="bg-white rounded-lg shadow-sm hover:shadow-md w-full p-6 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition font-medium"
             />
     <Label htmlFor="password">Password</Label>
     <Input
@@ -26,7 +26,7 @@ export default async function LoginPage() {
               placeholder="Enter your password"
               name="password"
               required
-              className="bg-white rounded-lg shadow-sm hover:shadow-md w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              className="bg-white rounded-lg shadow-sm hover:shadow-md w-full p-6 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition font-medium"
             />
      <Button type="submit" className="inline-block px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">Click me</Button>
      </form>

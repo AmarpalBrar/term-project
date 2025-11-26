@@ -27,22 +27,25 @@ export default async function BlockIDPage(props: Props) {
           <header className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-semibold text-gray-800">CodeBlocks</h1>
 
-          <div className="flex gap-4"> 
-          <form action={deleteBlock}>
-            <input type="hidden" name="id" value={id} />
+          <div className="flex gap-4">
+            <form action="javascript:void(0)">
+            <input type="hidden" name="id" value="2" />
             <button
             type="submit"
-            className="mt-4 px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            className="px-5 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition"
             >
             Delete
             </button>
-          </form>
-            <Link href={`/blocks/${block.id}/edit`}>
-              <span className="inline-block px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
-                Edit
-              </span>
-            </Link>
+            </form>
+
+            <a
+            href="/blocks/2/edit"
+            className="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition inline-block text-center"
+            >
+            Edit
+            </a>
           </div>
+
         </header>
 
         <form className="space-y-4">
